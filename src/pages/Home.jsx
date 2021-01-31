@@ -1,16 +1,171 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, Component } from "react";
 import Layout from "../components/Layout/Layout.jsx";
-import BlogContentArea from "../components/BlogContentArea/BlogContentArea.jsx";
 import SecondaryPost from "../components/SecondaryPost/SecondaryPost.jsx";
 import SecondaryContentArea from "../components/SecondaryContentArea/SecondaryContentArea.jsx";
 import Loading from "./Loading.jsx";
 import Post from "../components/Post/Post.jsx";
 import Hero from "../components/Hero/Hero.jsx";
+import Error from "../components/Error/Error.jsx";
+import Spacer from "../components/Spacer/Spacer.jsx";
+
+// class Home extends Component {
+// 	constructor(props) {
+// 		super(props);
+// 		this.state = {
+// 			allPosts: [],
+// 			isFetching: false,
+// 			hasError: false,
+// 		};
+// 	}
+
+// 	componentDidMount() {
+// 		this.setState({
+// 			...this.state,
+// 			isFetching: true,
+// 		});
+// 		fetch(`http://localhost:8889/api/cful/all`, {
+// 			method: "GET",
+// 			mode: "cors",
+// 		})
+// 			.then((res) => {
+// 				return res.json();
+// 			})
+// 			.then((response) => {
+// 				this.setState({
+// 					...this.state,
+// 					allPosts: response.items,
+// 					isFetching: false,
+// 				});
+// 				// console.log(response.items);
+// 				// dispatch({
+// 				// 	type: "FETCH_POSTS_SUCCESS",
+// 				// 	payload: response.items,
+// 				// });
+// 			})
+// 			.catch((error) => {
+// 				console.log(error);
+// 				// dispatch({
+// 				// 	type: "FETCH_POSTS_FAILURE",
+// 				// });
+// 			});
+// 		// }, []);
+// 	}
+// 	// }
+
+// 	shouldComponentUpdate(nextProps, nextState) {
+// 		// Only update if bricks change
+// 		return (
+// 			nextState.allPosts.length > this.state.allPosts.length ||
+// 			nextState.isFetching !== this.state.isFetching ||
+// 			nextState.hasError !== this.state.hasError
+// 		);
+// 	}
+// 	//  const initialState = {
+// 	// 	allPosts: [],
+// 	// 	isFetching: false,
+// 	// 	hasError: false,
+// 	// };
+// 	// const reducer = (state, action) => {
+// 	// 	switch (action.type) {
+// 	// 		case "FETCH_POSTS_REQUEST":
+// 	// 			return {
+// 	// 				...state,
+// 	// 				isFetching: true,
+// 	// 				hasError: false,
+// 	// 			};
+// 	// 		case "FETCH_POSTS_SUCCESS":
+// 	// 			return {
+// 	// 				...state,
+// 	// 				isFetching: false,
+// 	// 				hasError: false,
+// 	// 				allPosts: action.payload.map(({ fields, sys }) => {
+// 	// 					return { fields: fields, id: sys.id };
+// 	// 				}),
+// 	// 			};
+// 	// 		case "FETCH_POSTS_FAILURE":
+// 	// 			return {
+// 	// 				...state,
+// 	// 				hasError: true,
+// 	// 				isFetching: false,
+// 	// 			};
+// 	// 		default:
+// 	// 			return state;
+// 	// 	}
+// 	// };
+
+// 	// const [state, dispatch] = useReducer(reducer, initialState);
+
+// 	// useEffect(() => {
+// 	// 	dispatch({
+// 	// 		type: "FETCH_POSTS_REQUEST",
+// 	// 	});
+// 	// 	fetch(`http://localhost:8889/api/cful/all`, {
+// 	// 		method: "GET",
+// 	// 		mode: "cors",
+// 	// 	})
+// 	// 		.then((res) => {
+// 	// 			return res.json();
+// 	// 		})
+// 	// 		.then((response) => {
+// 	// 			console.log(response.items);
+// 	// 			dispatch({
+// 	// 				type: "FETCH_POSTS_SUCCESS",
+// 	// 				payload: response.items,
+// 	// 			});
+// 	// 		})
+// 	// 		.catch((error) => {
+// 	// 			console.log(error);
+// 	// 			dispatch({
+// 	// 				type: "FETCH_POSTS_FAILURE",
+// 	// 			});
+// 	// 		});
+// 	// }, []);
+
+// 	render() {
+// 		return (
+// 			<>
+// 				{this.state.isFetching ? (
+// 					<Loading text={"LOADING..."} />
+// 				) : !this.state.hasError ? (
+// 					<Layout>
+// 						<Hero>
+// 							{/* <Spacer /> */}
+// 							{this.state.allPosts[0] ? (
+// 								<Post posts={this.state.allPosts} />
+// 							) : null}
+// 							{/* <Spacer /> */}
+// 						</Hero>
+// 						<Hero
+// 							display={this.state.allPosts[1] ? "flex" : "none"}
+// 							bgColor={"black"}
+// 						>
+// 							<SecondaryContentArea>
+// 								{this.state.allPosts[1]
+// 									? this.state.allPosts.slice(1).map((post) => {
+// 											return (
+// 												<SecondaryPost
+// 													title={post.fields.postTitle}
+// 													text={post.fields.postText}
+// 													key={post.id}
+// 													id={post.id}
+// 												/>
+// 											);
+// 									  })
+// 									: null}
+// 							</SecondaryContentArea>
+// 						</Hero>
+// 					</Layout>
+// 				) : (
+// 					<Error />
+// 				)}
+// 			</>
+// 		);
+// 	}
+// }
 
 const Home = () => {
 	const initialState = {
-		featuredPost: {},
-		secondaryPosts: [],
+		allPosts: [],
 		isFetching: false,
 		hasError: false,
 	};
@@ -27,17 +182,8 @@ const Home = () => {
 					...state,
 					isFetching: false,
 					hasError: false,
-					featuredPost: {
-						title: action.payload[0].fields.postTitle,
-						text: action.payload[0].fields.postText,
-						id: action.payload[0].sys.id,
-					},
-					secondaryPosts: action.payload.splice(1, 1).map(({ fields, sys }) => {
-						return {
-							title: fields.postTitle,
-							text: fields.postText,
-							id: sys.id,
-						};
+					allPosts: action.payload.map(({ fields, sys }) => {
+						return { fields: fields, id: sys.id };
 					}),
 				};
 			case "FETCH_POSTS_FAILURE":
@@ -65,12 +211,11 @@ const Home = () => {
 				return res.json();
 			})
 			.then((response) => {
-				console.log(response);
+				console.log(response.items);
 				dispatch({
 					type: "FETCH_POSTS_SUCCESS",
 					payload: response.items,
 				});
-				console.log(state.secondaryPosts);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -83,28 +228,33 @@ const Home = () => {
 	return (
 		<>
 			{state.isFetching ? (
-				<Loading />
-			) : (
+				<Loading text={"LOADING..."} />
+			) : !state.hasError ? (
 				<Layout>
 					<Hero>
-						{state.featuredPost ? (
-							<Post
-								title={state.featuredPost.title}
-								text={state.featuredPost.text}
-								id={state.featuredPost.id}
-							/>
-						) : null}
+						{/* <Spacer /> */}
+						{state.allPosts[0] ? <Post posts={state.allPosts} /> : null}
+						{/* <Spacer /> */}
 					</Hero>
-					<Hero>
+					<Hero display={state.allPosts[1] ? "flex" : "none"} bgColor={"black"}>
 						<SecondaryContentArea>
-							{state.secondaryPosts[0]
-								? state.secondaryPosts.map(({ title, text, id }) => {
-										return <SecondaryPost title={title} text={text} id={id} />;
+							{state.allPosts[1]
+								? state.allPosts.slice(1).map((post) => {
+										return (
+											<SecondaryPost
+												title={post.fields.postTitle}
+												text={post.fields.postText}
+												key={post.id}
+												id={post.id}
+											/>
+										);
 								  })
 								: null}
 						</SecondaryContentArea>
 					</Hero>
 				</Layout>
+			) : (
+				<Error />
 			)}
 		</>
 	);

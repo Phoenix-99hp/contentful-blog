@@ -9,7 +9,7 @@ export const StyledNavButton = styled.button`
 	// color: black;
 	color: #ea42dd;
 	cursor: pointer;
-	margin-left: 10px;
+	margin-left: 15px;
 	border-radius: 5px;
 	background-color: white;
 	font-size: 16px;
@@ -17,7 +17,7 @@ export const StyledNavButton = styled.button`
 	font-family: MontserratAltReg;
 
 	&:nth-of-type(1) {
-		margin: 0 10px 0 0;
+		margin: 0 15px 0 0;
 	}
 
 	&:hover {

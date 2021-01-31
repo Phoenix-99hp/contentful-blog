@@ -9,21 +9,29 @@ export const StyledSecondaryPostContainer = styled.div`
 	display: inline-flex;
 	align-items: center;
 	overflow: hidden;
+	opacity: 0.95;
+	padding-bottom: 5px;
 `;
 
 export const StyledSecondaryPostTitle = styled.h4`
-	font-size: 25px;
+	font-size: 20px;
 	color: #ea42dd;
 	font-family: MontserratAltReg;
 	// text-decoration: underline;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	border-bottom: 2px solid #ea42dd;
+	// padding-top: 5px;
+	// padding-bottom: 5px;
+	padding: 2px;
+	border 2px solid #ea42dd;
 	cursor: pointer;
+
+	&:hover {
+		background-color: #ea42dd;
+		color: white;
+	}
 `;
 
 export const StyledSecondaryPostText = styled.p`
 	padding-left: 10px;
-	font-size: 18px;
+	font-size: 16px;
 	font-family: MontserratAltLight;
 `;

@@ -6,6 +6,6 @@ export const StyledFooter = styled.footer`
 	flex-wrap: wrap;
 	align-content: center;
 	justify-content: center;
-	background-color: blue;
+	background-color: black;
 	width: 100%;
 `;

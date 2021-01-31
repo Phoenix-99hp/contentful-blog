@@ -4,6 +4,8 @@ import MontserratSemi from "../../fonts/Montserrat-SemiBoldItalic.ttf";
 import MontserratAltReg from "../../fonts/MontserratAlternates-Regular.ttf";
 import MontserratAltSemi from "../../fonts/MontserratAlternates-SemiBold.ttf";
 import MontserratAltLight from "../../fonts/MontserratAlternates-Light.ttf";
+import MontserratReg from "../../fonts/Montserrat-Regular.ttf";
+import MontserratRegSemi from "../../fonts/Montserrat-SemiBold.ttf";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -161,6 +163,16 @@ body {
 @font-face {
   font-family: MontserratAltLight;;
   src: url(${MontserratAltLight});
+}
+
+@font-face {
+  font-family: MontserratReg;;
+  src: url(${MontserratReg});
+}
+
+@font-face {
+  font-family: MontserratRegSemi;
+  src: url(${MontserratRegSemi});
 }
 `;
 

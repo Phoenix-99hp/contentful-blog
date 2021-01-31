@@ -1,29 +1,26 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 
-export const IsFetchingContext = React.createContext();
+export const SearchContext = React.createContext();
 
-const initialState = {
-	isFetchingData: false,
-};
+// const reducer = (state, action) => {
+// 	switch (action.type) {
+// 		case "STORING_ID_TO_FEATURE":
+// 			return {
+// 				...state,
+// 				isFetching: true,
+// 			};
+// 		case "FETCH_FEATURED_COMPLETE":
+// 			return {
+// 				...state,
+// 				isFetching: false,
+// 				featuredPost: action.payload,
+// 			};
+// 		default:
+// 			return state;
+// 	}
+// };
 
-const reducer = (state, action) => {
-	switch (action.type) {
-		case "FETCHING":
-			return {
-				...state,
-				isFetchingData: true,
-			};
-		case "FETCH COMPLETE":
-			return {
-				...state,
-				isFetchingData: false,
-			};
-		default:
-			return state;
-	}
-};
-
-const [state, dispatch] = useReducer(reducer, initialState);
+// const [state, dispatch] = useReducer(reducer, initialState);
 // return (
 //     <AuthContext.Provider
 //       value={{
@@ -33,18 +30,22 @@ const [state, dispatch] = useReducer(reducer, initialState);
 // isFetching: isFetching,
 // setIsFetching: (newStatus) => setIsFetching(newStatus),
 
-export const IsFetchingContextProvider = ({ children }) => {
+export const SearchContextProvider = ({ children }) => {
 	// const [isFetching, setIsFetching] = useState(false);
 
+	const [search, setSearch] = useState({
+		for: null,
+	});
+
 	return (
-		<IsFetchingContext.Provider
+		<SearchContext.Provider
 			value={{
-				state,
-				dispatch,
+				search: search,
+				setSearch: (data) => setSearch(data),
 			}}
 		>
 			{children}
-		</IsFetchingContext.Provider>
+		</SearchContext.Provider>
 	);
 };
 

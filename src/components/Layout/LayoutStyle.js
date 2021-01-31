@@ -1,19 +1,35 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0%;
+  }
+
+  to {
+    opacity: 100%;
+  }
+`;
 
 export const PageContainer = styled.div`
-	opacity: 0;
 	display: flex;
 	flex-flow: column;
 	min-height: 100vh;
 	height: 100%;
 	text-align: center;
 	width: 100vw;
-	// background-color: #070707;
-	transition: all 500ms ease-in-out;
-	opacity: ${({ opacity }) => (opacity === "show" ? 1 : 0)};
-	// font-family: Redressed;
+	background-color: black;
 	align-items: center;
-	// border: 3px solid white;
+`;
+
+export const FadeContainer = styled.div`
+	display: flex;
+	flex-flow: column;
+	min-height: 100vh;
+	// height: 100%;
+	text-align: center;
+	width: 100vw;
+	align-items: center;
+	animation: ${fadeIn} 0.6s ease-in;
 `;
 
 export const MainContent = styled.main`
