@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import "../../theme/globalFonts.css";
 
 export const StyledPostItem = styled.div`
 	display: flex;

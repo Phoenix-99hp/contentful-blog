@@ -5,6 +5,7 @@ import Featured from "./pages/Featured.jsx";
 import Search from "./pages/Search.jsx";
 // import Loading from "./pages/Loading.jsx";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./theme/globalFonts.css";
 // import { isFetchingContext } from "./contexts/IsFetchingContext";
 // import { FeaturedContextProvider } from "./contexts/FeaturedContext";
 

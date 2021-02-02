@@ -32,6 +32,10 @@ module.exports = {
 					},
 				],
 			},
+			{
+				test: /\.css$/i,
+				use: ["style-loader", "css-loader"],
+			},
 		],
 	},
 	plugins: [new HWP({ template: __dirname + "/public/index.html" })],

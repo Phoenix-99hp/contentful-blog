@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from "styled-components";
+import "../../theme/globalFonts.css";
 
 const fadeIn = keyframes`
   from {

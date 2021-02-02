@@ -1,11 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import MontserratBold from "../../fonts/Montserrat-BoldItalic.ttf";
-import MontserratSemi from "../../fonts/Montserrat-SemiBoldItalic.ttf";
-import MontserratAltReg from "../../fonts/MontserratAlternates-Regular.ttf";
-import MontserratAltSemi from "../../fonts/MontserratAlternates-SemiBold.ttf";
-import MontserratAltLight from "../../fonts/MontserratAlternates-Light.ttf";
-import MontserratReg from "../../fonts/Montserrat-Regular.ttf";
-import MontserratRegSemi from "../../fonts/Montserrat-SemiBold.ttf";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -139,43 +132,6 @@ body {
   height: 100%;
   width: 100%;
 }
-
-@font-face {
-  font-family: MontserratBold;
-  src: url(${MontserratBold});
-}
-
-@font-face {
-  font-family: MontserratSemi;
-  src: url(${MontserratSemi});
-}
-
-@font-face {
-  font-family: MontserratAltReg;
-  src: url(${MontserratAltReg});
-}
-
-@font-face {
-  font-family: MontserratAltSemi;;
-  src: url(${MontserratAltSemi});
-}
-
-@font-face {
-  font-family: MontserratAltLight;;
-  src: url(${MontserratAltLight});
-}
-
-@font-face {
-  font-family: MontserratReg;;
-  src: url(${MontserratReg});
-}
-
-@font-face {
-  font-family: MontserratRegSemi;
-  src: url(${MontserratRegSemi});
-}
 `;
-
-MontserratAltSemi;
 
 export default GlobalStyle;

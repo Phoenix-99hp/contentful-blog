@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useCallback } from "react";
 import {
 	StyledPostTitle,
 	StyledPostText,
@@ -23,7 +23,7 @@ const Post = ({ posts }) => {
 
 	const initialState = {
 		posts: posts,
-		hasError: false,
+		// hasError: false,
 		carouselData: {
 			featuredPost: posts[0],
 			featuredIndex: 0,
@@ -38,13 +38,13 @@ const Post = ({ posts }) => {
 				return {
 					...state,
 					carouselData: action.payload,
-					hasError: false,
+					// hasError: false,
 				};
 			case "CAROUSEL_SLIDE_LEFT":
 				return {
 					...state,
 					carouselData: action.payload,
-					hasError: false,
+					// hasError: false,
 				};
 			default:
 				return state;
@@ -108,7 +108,6 @@ const Post = ({ posts }) => {
 											: "hide"
 									}
 									direction={state.carouselData.direction}
-									data-post-id={post.id}
 									key={post.id}
 								>
 									<StyledPostTitle>{post.fields.postTitle}</StyledPostTitle>
@@ -122,7 +121,7 @@ const Post = ({ posts }) => {
 				<StyledNextButton onClick={handleNextClick}>{">"}</StyledNextButton>
 				<StyledPrevButton onClick={handlePrevClick}>{"<"}</StyledPrevButton>
 				<StyledContinueButton
-					onClick={(e) => {
+					onClick={() => {
 						handleContinueClick(state.carouselData.featuredPost.id);
 					}}
 				>
@@ -134,17 +133,3 @@ const Post = ({ posts }) => {
 };
 
 export default Post;
-
-// stack={
-// 	i !== state.carouselData.featuredIndex &&
-// 	!state.carouselData.inProgress
-// 		? "stack"
-// 		: i === state.carouselData.formerIndex &&
-// 		  !state.carouselData.inProgress
-// 		? "stack"
-// 		: !state.carouselData.inProgress &&
-// 		  (i < state.carouselData.featuredIndex ||
-// 				i > state.carouselData.featuredIndex)
-// 		? "stack"
-// 		: "noStack"
-// }
