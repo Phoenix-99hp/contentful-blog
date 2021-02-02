@@ -11,11 +11,12 @@ import NoSearchMatch from "../components/NoSearchMatch/NoSearchMatch.jsx";
 
 const Search = () => {
 	const { search } = useContext(SearchContext);
-	const dashed = search.for.trim().replace(/\s+/g, "-");
+	const trimmed = search.for.trim();
+	// .replace(/\s+/g, "-");
 
 	const initialState = {
 		exactMatch: null,
-		similar: [],
+		similar: null,
 		isFetching: false,
 		hasError: false,
 	};
@@ -32,7 +33,7 @@ const Search = () => {
 					...state,
 					isFetching: false,
 					hasError: false,
-					exactMatch: action.payload.exact,
+					exactMatch: action.payload.exactMatch,
 					similar: action.payload.similar,
 				};
 			case "FETCH_SEARCH_FAILURE":
@@ -53,7 +54,7 @@ const Search = () => {
 			type: "FETCH_SEARCH_REQUEST",
 		});
 		console.log("INITIATING SEARCH");
-		fetch(`http://localhost:8889/api/cful/title=${dashed}`, {
+		fetch(`/api/search/${trimmed}`, {
 			method: "GET",
 			mode: "cors",
 		})
@@ -86,16 +87,16 @@ const Search = () => {
 						<Spacer />
 						{state.exactMatch ? (
 							<FeaturedPost
-								title={state.exactMatch.fields.postTitle}
-								text={state.exactMatch.fields.postText}
-								id={state.exactMatch.sys.id}
+								title={state.exactMatch.items[0].fields.postTitle}
+								text={state.exactMatch.items[0].fields.postText}
+								id={state.exactMatch.items[0].sys.id}
 								exactSearch={true}
 							/>
 						) : (
 							<NoSearchMatch />
 						)}
 						<Spacer>
-							{state.similar[0] ? <SimilarPosts posts={state.similar} /> : null}
+							{state.similar ? <SimilarPosts posts={state.similar} /> : null}
 						</Spacer>
 					</Hero>
 				</Layout>

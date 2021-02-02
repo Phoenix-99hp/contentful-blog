@@ -48,9 +48,9 @@ const Home = () => {
 		dispatch({
 			type: "FETCH_POSTS_REQUEST",
 		});
-		fetch(`http://localhost:8889/api/cful/all`, {
+		fetch(`/api/recent`, {
 			method: "GET",
-			mode: "cors",
+			mode: "same-origin",
 		})
 			.then((res) => {
 				return res.json();

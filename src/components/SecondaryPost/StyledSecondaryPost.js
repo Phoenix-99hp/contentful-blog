@@ -23,6 +23,8 @@ export const StyledSecondaryPostTitle = styled.h4`
 	padding: 2px;
 	border 2px solid #ea42dd;
 	cursor: pointer;
+	
+	width: fit-content;
 
 	&:hover {
 		background-color: #ea42dd;

@@ -51,9 +51,9 @@ const Featured = () => {
 		dispatch({
 			type: "FETCH_POST_REQUEST",
 		});
-		fetch(`http://localhost:8889/api/cful/id=${featuredState.featuredID}`, {
+		fetch(`/api/featured/${featuredState.featuredID}`, {
 			method: "GET",
-			mode: "cors",
+			mode: "same-origin",
 		})
 			.then((res) => {
 				console.log("RES", res);
