@@ -53,8 +53,10 @@ const SearchInput = ({ label, placeholder, buttonName }) => {
 	const history = useHistory();
 
 	const handleSubmitSearch = (e) => {
-		setSearch({ for: e.target.previousElementSibling.value });
-		history.push("/search");
+		if (e.target.previousElementSibling.value) {
+			setSearch({ for: e.target.previousElementSibling.value });
+			history.push("/search");
+		}
 		// 	const dashed = search.replace(/\s/g, "-");
 		// 	const search = e.target.previouElementSibling.value;
 		// 	e.preventDefault();
