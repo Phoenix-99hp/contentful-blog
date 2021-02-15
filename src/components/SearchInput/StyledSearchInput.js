@@ -58,6 +58,12 @@ export const StyledInputButton = styled.button`
 		background-color: #13d5f0;
 		color: white;
 	}
+
+	@media screen and (max-width: 530px) {
+		// width: 150px;
+		margin-left: 0px;
+		margin-top: 30px;
+	}
 `;
 
 export const StyledSearchResults = styled.div`

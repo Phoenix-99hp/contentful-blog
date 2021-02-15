@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, Component } from "react";
+import React, { useReducer, useEffect } from "react";
 import Layout from "../components/Layout/Layout.jsx";
 import SecondaryPost from "../components/SecondaryPost/SecondaryPost.jsx";
 import SecondaryContentArea from "../components/SecondaryContentArea/SecondaryContentArea.jsx";
@@ -6,7 +6,6 @@ import Loading from "./Loading.jsx";
 import Post from "../components/Post/Post.jsx";
 import Hero from "../components/Hero/Hero.jsx";
 import Error from "../components/Error/Error.jsx";
-import Spacer from "../components/Spacer/Spacer.jsx";
 
 const Home = () => {
 	const initialState = {
@@ -57,10 +56,12 @@ const Home = () => {
 			})
 			.then((response) => {
 				console.log(response.items);
-				dispatch({
-					type: "FETCH_POSTS_SUCCESS",
-					payload: response.items,
-				});
+				setTimeout(() => {
+					dispatch({
+						type: "FETCH_POSTS_SUCCESS",
+						payload: response.items,
+					});
+				}, 1000);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -77,9 +78,7 @@ const Home = () => {
 			) : !state.hasError ? (
 				<Layout>
 					<Hero>
-						{/* <Spacer /> */}
 						{state.allPosts[0] ? <Post posts={state.allPosts} /> : null}
-						{/* <Spacer /> */}
 					</Hero>
 					<Hero display={state.allPosts[1] ? "flex" : "none"} bgColor={"black"}>
 						<SecondaryContentArea>

@@ -46,11 +46,8 @@ export const StyledSimilarTitle = styled.h2`
 	height: fit-content;
 	margin-bottom: 25px;
 	border-radius: 5px;
-`;
 
-// export const StyledItemContainer = styled.div`
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-// 	flex: 1 1 100%;
-// `;
+	@media screen and (max-width: 1200px) {
+		margin-top: 25px;
+	}
+`;

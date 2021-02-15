@@ -18,6 +18,15 @@ export const StyledSecondaryContentArea = styled.div`
 	// padding: 20px;
 	// background-color: white;
 	// opacity: 0.95;
+
+	@media screen and (max-width: 1140px) {
+		flex: 1 1 100%;
+	}
+
+	@media screen and (max-width: 700px) {
+		width: 100%;
+		box-sizing: border-box;
+	}
 `;
 
 export const StyledSectionTitle = styled.h2`
@@ -37,6 +46,10 @@ export const StyledSecondarySection = styled.div`
 
 	&:nth-of-type(1) {
 		flex: 1 1 50%;
+
+		@media screen and (max-width: 530px) {
+			flex-wrap: wrap;
+		}
 	}
 
 	&:nth-of-type(2) {
@@ -56,11 +69,24 @@ export const StyledInputContainer = styled.div`
 	// min-height: 128px;
 	width: 100%;
 	align-items: flex-start;
-	padding-top: 20px;
+	// padding-top: 20px;
 	// align-content: center;
 	// justify-content: center;
 	flex: 1 1 50%;
 	// align-self: flex-start;
+
+	@media screen and (max-width: 1140px) {
+		padding-top: 0;
+		flex: 1 1 100%;
+	}
+
+	@media screen and (max-width: 530px) {
+		padding-top: 70px;
+	}
+
+	@media screen and (max-width: 400px) {
+		padding-top: 91px;
+	}
 `;
 
 export const StyledContentContainer = styled.div`
@@ -76,4 +102,28 @@ export const StyledContentContainer = styled.div`
 	width: 100%;
 	max-width: 500px;
 	margin: 0 auto;
+
+	@media screen and (max-width: 700px) {
+		max-width: none;
+		box-sizing: border-box;
+	}
+
+	// @media screen and (max-width: 530px) {
+
+	// }
+`;
+
+export const StyledSecondaryContentOuter = styled.div`
+	display: flex;
+	// flex: 1 1 100%;
+	flex-wrap: nowrap;
+	// border: 5px solid green;
+	box-sizing: border-box;
+	max-width: 1500px;
+	width: 100%;
+	min-height: 416px;
+
+	@media screen and (max-width: 1140px) {
+		flex-wrap: wrap;
+	}
 `;

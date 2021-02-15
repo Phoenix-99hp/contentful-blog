@@ -61,10 +61,12 @@ const Featured = () => {
 			})
 			.then((response) => {
 				console.log(response);
-				dispatch({
-					type: "FETCH_POST_SUCCESS",
-					payload: response,
-				});
+				setTimeout(() => {
+					dispatch({
+						type: "FETCH_POST_SUCCESS",
+						payload: response,
+					});
+				}, 1000);
 			})
 			.catch((error) => {
 				console.log(error);

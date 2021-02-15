@@ -11,12 +11,11 @@ import NoSearchMatch from "../components/NoSearchMatch/NoSearchMatch.jsx";
 
 const Search = () => {
 	const { search } = useContext(SearchContext);
-	const trimmed = search.for.trim();
-	// .replace(/\s+/g, "-");
+	const prepared = search.for.trim().toLowerCase();
 
 	const initialState = {
 		exactMatch: null,
-		similar: null,
+		similar: [],
 		isFetching: false,
 		hasError: false,
 	};
@@ -53,10 +52,10 @@ const Search = () => {
 		dispatch({
 			type: "FETCH_SEARCH_REQUEST",
 		});
-		console.log("INITIATING SEARCH");
-		fetch(`/api/search/${trimmed}`, {
+		console.log("INITIATING SEARCH", prepared);
+		fetch(`/api/search/${prepared}`, {
 			method: "GET",
-			mode: "cors",
+			mode: "same-origin",
 		})
 			.then((res) => {
 				console.log("RES", res);
@@ -64,10 +63,12 @@ const Search = () => {
 			})
 			.then((response) => {
 				console.log(response, "RESPONSE");
-				dispatch({
-					type: "FETCH_SEARCH_SUCCESS",
-					payload: response,
-				});
+				setTimeout(() => {
+					dispatch({
+						type: "FETCH_SEARCH_SUCCESS",
+						payload: response,
+					});
+				}, 1000);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -87,16 +88,16 @@ const Search = () => {
 						<Spacer />
 						{state.exactMatch ? (
 							<FeaturedPost
-								title={state.exactMatch.items[0].fields.postTitle}
-								text={state.exactMatch.items[0].fields.postText}
-								id={state.exactMatch.items[0].sys.id}
+								title={state.exactMatch.fields.postTitle}
+								text={state.exactMatch.fields.postText}
+								id={state.exactMatch.sys.id}
 								exactSearch={true}
 							/>
 						) : (
 							<NoSearchMatch />
 						)}
 						<Spacer>
-							{state.similar ? <SimilarPosts posts={state.similar} /> : null}
+							{state.similar[0] ? <SimilarPosts posts={state.similar} /> : null}
 						</Spacer>
 					</Hero>
 				</Layout>

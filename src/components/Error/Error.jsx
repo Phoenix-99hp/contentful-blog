@@ -9,11 +9,11 @@ import {
 } from "./ErrorStyle";
 
 const Error = () => {
-	const [opacity, setOpacity] = useState("hide");
+	// const [opacity, setOpacity] = useState("hide");
 
-	useEffect(() => {
-		setOpacity("show");
-	}, []);
+	// useEffect(() => {
+	// 	setOpacity("show");
+	// }, []);
 
 	return (
 		<PageContainer opacity={opacity}>

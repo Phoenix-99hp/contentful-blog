@@ -19,6 +19,23 @@ export const StyledPostContainer = styled.div`
 	opacity: 0.95;
 	word-break: break-word;
 	// overflow: hidden;
+	box-sizing: border-box;
+
+	@media screen and (max-width: 1200px) {
+		flex: 1 1 100%;
+	}
+
+	@media screen and (max-width: 700px) {
+		width: 300px;
+		min-height: 300px;
+		height: 300px;
+	}
+
+	@media screen and (max-width: 400px) {
+		width: 200px;
+		min-height: 230px;
+		height: 230px;
+	}
 `;
 
 export const StyledPostTitle = styled.h3`
@@ -37,6 +54,23 @@ export const StyledPostTitle = styled.h3`
     max-width: 400px;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
+	box-sizing: border-box;
+	white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+	@media screen and (max-width: 700px) {
+		// box-sizing: border-box;
+		width: 240px;
+	}
+
+	@media screen and (max-width: 400px) {
+		width: 160px;
+		padding: 15px;
+		// white-space: nowrap;
+		// overflow: hidden;
+		// text-overflow: ellipsis;
+	}
 };
 `;
 
@@ -55,6 +89,8 @@ export const StyledPostOuterContainer = styled.div`
 	flex-direction: column;
 	width: fit-content;
 	position: relative;
+
+	flex-wrap: wrap;
 `;
 
 export const StyledExactMatch = styled.h2`

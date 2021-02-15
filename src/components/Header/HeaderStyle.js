@@ -15,6 +15,9 @@ export const StyledHeaderContainer = styled.header`
 	padding: 60px 30px 0;
 	// margin-bottom
 	// font-family: MontserratAltSemi;
+	@media screen and (max-width: 530px) {
+		flex-wrap: wrap;
+	}
 `;
 
 export const StyledMainHeading = styled.div`
@@ -27,6 +30,10 @@ export const StyledMainHeading = styled.div`
 	width: 100%;
 	font-size: 65px;
 	font-family: MontserratAltSemi;
+
+	@media screen and (max-width: 530px) {
+		flex: 1 1 100%;
+	}
 `;
 
 export const StyledHeadingInner = styled.h1`

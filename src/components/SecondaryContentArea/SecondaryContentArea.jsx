@@ -5,12 +5,13 @@ import {
 	StyledSecondarySection,
 	StyledInputContainer,
 	StyledContentContainer,
+	StyledSecondaryContentOuter,
 } from "./StyledSecondaryContentArea";
 import SearchInput from "../SearchInput/SearchInput.jsx";
 
 const SecondaryContentArea = ({ children }) => {
 	return (
-		<>
+		<StyledSecondaryContentOuter>
 			<StyledSecondaryContentArea>
 				<StyledSecondarySection>
 					<StyledContentContainer>
@@ -28,7 +29,7 @@ const SecondaryContentArea = ({ children }) => {
 					/>
 				</StyledSecondarySection>
 			</StyledInputContainer>
-		</>
+		</StyledSecondaryContentOuter>
 	);
 };
 

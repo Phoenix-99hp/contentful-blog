@@ -9,6 +9,7 @@ export const StyledOuterContainer = styled.div`
 	flex-direction: column;
 	// width: fit-content;
 	position: relative;
+	align-self: flex-start;
 `;
 
 export const StyledNoMatch = styled.h2`

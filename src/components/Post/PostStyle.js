@@ -59,51 +59,81 @@ const slideRightOld = keyframes`
     right: -610px;
 }`;
 
-// export const StyledPostContainer = styled.div`
-// 	// display: block;
-// 	display: flex;
-// 	min-width: 586px;
-// 	width: 100%;
-// 	height: 100%;
-// 	flex-wrap: wrap;
-// 	text-align: center;
-// 	height: 300px;
-// 	// min-height: 300px;
-// 	border-radius: 3px;
-// 	// justify-content: center;
-// 	width: 550px;
-// 	background-color: white;
-// 	// flex: 1 1 100%;
-// 	padding: 15px;
-// 	// position: absolute;
-// 	position: relative;
-// 	border: 3px solid #13d5f0;
-// 	opacity: 0.95;
-// 	word-break: break-word;
-// 	bottom: 0;
-// 	align-self: flex-end;
-// 	// overflow: hidden;
-// 	${({ slideOut }) =>
-// 		slideOut === "slideRight" &&
-// 		css`
-// 			animation: ${slideRight} 2s ease;
-// 		`};
-// 	${({ slideOut }) =>
-// 		slideOut === "slideLeft" &&
-// 		css`
-// 			animation: ${slideLeft} 2s ease;
-// 		`};
-// 	${({ slideIn }) =>
-// 		slideIn === "slideRight" &&
-// 		css`
-// 			animation: ${slideRight} 2s ease;
-// 		`};
-// 	${({ slideIn }) =>
-// 		slideIn === "slideLeft" &&
-// 		css`
-// 			animation: ${slideLeft} 2s ease;
-// 		`};
-// `;
+const slideLeftNewBp = keyframes`
+
+0% {
+    left: 320px;
+}
+
+100% {
+    left: 0;
+}`;
+
+const slideRightNewBp = keyframes`
+0% {
+    right: 320px;
+}
+
+100% {
+    right: 0;
+}`;
+
+const slideLeftOldBp = keyframes`
+
+0% {
+    left: 0;
+}
+
+100% {
+    left: -320px;
+}`;
+
+const slideRightOldBp = keyframes`
+0% {
+    right: 0;
+}
+
+100% {
+    right: -320px;
+}`;
+
+const slideLeftNewBpTwo = keyframes`
+
+0% {
+    left: 220px;
+}
+
+100% {
+    left: 0;
+}`;
+
+const slideRightNewBpTwo = keyframes`
+0% {
+    right: 220px;
+}
+
+100% {
+    right: 0;
+}`;
+
+const slideLeftOldBpTwo = keyframes`
+
+0% {
+    left: 0;
+}
+
+100% {
+    left: -220px;
+}`;
+
+const slideRightOldBpTwo = keyframes`
+0% {
+    right: 0;
+}
+
+100% {
+    right: -220px;
+}`;
 
 export const StyledPostTitle = styled.h3`
 	font-size: 30px;
@@ -125,7 +155,24 @@ export const StyledPostTitle = styled.h3`
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
+	transform: translateX(-50%);
+	margin: 0 auto;
+	box-sizing: border-box;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	@media screen and (max-width: 700px) {
+		// box-sizing: border-box;
+		width: 240px;
+	}
+
+	@media screen and (max-width: 400px) {
+		width: 160px;
+		padding: 15px;
+		// font-size: 25px;
+		
+	}
 };
 `;
 
@@ -133,49 +180,119 @@ export const StyledPostText = styled.p`
 	font-size: 18px;
 	text-align: left;
 	font-family: MontserratAltLight;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	height: 336px;
 	width: 100%;
 	position: absolute;
 	box-sizing: border-box;
+	border: 3px solid #13d5f0;
 	padding: 15px;
 	bottom: 0;
-	border: 3px solid #13d5f0;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+
+	// border: 15px solid transparent;
+	text-overflow: ellipsis;
+	// border: 3px solid #13d5f0;
 	background-color: white;
+
+	@media screen and (max-width: 700px) {
+		width: 300px;
+		height: 220px;
+	}
+
+	@media screen and (max-width: 400px) {
+		width: 200px;
+		height: 170px;
+	}
 `;
+
+// export const StyledTextContainer = styled.p`
+// 	font-size: 18px;
+// 	text-align: left;
+// 	font-family: MontserratAltLight;
+// 	height: 336px;
+// 	width: 100%;
+// 	position: absolute;
+// 	box-sizing: border-box;
+// 	margin: 15px;
+// 	bottom: 0;
+// 	border: 3px solid #13d5f0;
+// 	background-color: white;
+
+// 	@media screen and (max-width: 530px) {
+// 		width: 300px;
+// 	}
+
+// 	@media screen and (max-width: 400px) {
+// 		width: 200px;
+// 	}
+// `;
 
 export const StyledPostOuterContainer = styled.div`
 	display: ${({ showHide, stack }) =>
-		stack === "stack" || showHide === "hide"
-			? // (stack === "stack" && showHide === "hide")
-			  "none"
-			: "flex"};
+		stack === "stack" || showHide === "hide" ? "none" : "flex"};
 
 	${({ showHide, direction }) =>
 		showHide === "showFeatured" &&
 		direction === "right" &&
 		css`
-			animation: ${slideRightNew} 3s ease, ${fadeIn} 3s ease;
+			animation: ${slideRightNew} 1s linear, ${fadeIn} 1s linear;
 			z-index: 9;
+
+			@media screen and (max-width: 700px) {
+				animation: ${slideRightNewBp} 1s linear, ${fadeIn} 1s linear;
+			}
+
+			@media screen and (max-width: 400px) {
+				animation: ${slideRightNewBpTwo} 1s linear, ${fadeIn} 1s linear;
+			}
 		`}
 	${({ showHide, direction }) =>
 		showHide === "showFeatured" &&
 		direction === "left" &&
 		css`
-			animation: ${slideLeftNew} 3s ease, ${fadeIn} 3s ease;
+			animation: ${slideLeftNew} 1s linear, ${fadeIn} 1s linear;
 			z-index: 9;
+
+			@media screen and (max-width: 700px) {
+				animation: ${slideLeftNewBp} 1s linear, ${fadeIn} 1s linear;
+			}
+
+			@media screen and (max-width: 400px) {
+				animation: ${slideLeftNewBpTwo} 1s linear, ${fadeIn} 1s linear;
+			}
 		`}
 
 	${({ showHide, direction }) =>
 		showHide === "hideFormer" &&
 		direction === "right" &&
 		css`
-			animation: ${slideRightOld} 3s ease, ${fadeOut} 3s ease;
+			animation: ${slideRightOld} 1s linear, ${fadeOut} 1s linear;
+
+			@media screen and (max-width: 700px) {
+				animation: ${slideRightOldBp} 1s linear, ${fadeOut} 1s linear;
+			}
+
+			@media screen and (max-width: 400px) {
+				animation: ${slideRightOldBpTwo} 1s linear, ${fadeOut} 1s linear;
+			}
 		`}
 	${({ showHide, direction }) =>
 		showHide === "hideFormer" &&
 		direction === "left" &&
 		css`
-			animation: ${slideLeftOld} 3s ease, ${fadeOut} 3s ease;
+			animation: ${slideLeftOld} 1s linear, ${fadeOut} 1s linear;
+
+			@media screen and (max-width: 700px) {
+				animation: ${slideLeftOldBp} 1s linear, ${fadeOut} 1s linear;
+			}
+
+			@media screen and (max-width: 400px) {
+				animation: ${slideLeftOldBpTwo} 1s linear, ${fadeOut} 1s linear;
+			}
 		`}
     
 	justify-content: center;
@@ -188,37 +305,17 @@ export const StyledPostOuterContainer = styled.div`
 	position: absolute;
 	// padding: 15px;
 	word-break: break-word;
+
+	// width: 300px;
+
+	@media screen and (max-width: 700px) {
+		width: 300px;
+	}
+
+	@media screen and (max-width: 400px) {
+		width: 200px;
+	}
 `;
-
-// export const StyledPostOuterOuterContainer = styled.div`
-// 	display: flex;
-// 	flex-wrap: no-wrap;
-// 	// justify-self: flex-start;
-// 	justify-content: center;
-// 	align-items: center;
-// 	// max-width: 586px;
-// 	width: 100%;
-// 	height: 416px;
-// 	height: 100%;
-// 	// border: 10px solid blue;
-// 	// flex: 1 1 100%;
-// 	flex-direction: column;
-// 	// box-sizing: border-box;
-// 	// overflow: hidden;
-// 	// width: fit-content;
-// 	// animation: ${fadeIn} 1s ease-in;
-// 	position: relative;
-// `;
-
-// export const StyledPostFadeContainer = styled.div`
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-// 	width: 100%;
-// 	flex-direction: column;
-// 	width: fit-content;
-// 	animation:
-// `;
 
 export const StyledNextButton = styled.button`
 	position: absolute;
@@ -244,6 +341,11 @@ export const StyledNextButton = styled.button`
 	&:hover {
 		background-color: #13d5f0;
 		color: white;
+	}
+
+	@media screen and (max-width: 300px) {
+		z-index: 9;
+		right: -20px;
 	}
 `;
 
@@ -271,6 +373,11 @@ export const StyledPrevButton = styled.button`
 	&:hover {
 		background-color: #13d5f0;
 		color: white;
+	}
+
+	@media screen and (max-width: 300px) {
+		z-index: 9;
+		left: -20px;
 	}
 `;
 
@@ -311,6 +418,17 @@ export const StyledPostButtonsContainer = styled.div`
 	flex-direction: column;
 	// width: fit-content;
 	position: absolute;
+	// border: 3px solid #13d5f0;
+
+	@media screen and (max-width: 700px) {
+		width: 300px;
+		height: 300px;
+	}
+
+	@media screen and (max-width: 400px) {
+		width: 200px;
+		height: 230px;
+	}
 `;
 
 export const StyledRelativeContainer = styled.div`
@@ -334,4 +452,20 @@ export const StyledRelativeContainer = styled.div`
 	min-height: 416px;
 	overflow: hidden;
 	// flex-direction: row;
+
+	// width: 300px;
+	// min-height: 300px;
+	// height: 300px;
+
+	@media screen and (max-width: 700px) {
+		width: 300px;
+		min-height: 300px;
+		height: 300px;
+	}
+
+	@media screen and (max-width: 400px) {
+		width: 200px;
+		min-height: 230px;
+		height: 230px;
+	}
 `;

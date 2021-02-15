@@ -12,7 +12,7 @@ const Header = () => {
 		<StyledHeaderContainer>
 			<StyledSpacer></StyledSpacer>
 			<StyledMainHeading>
-				<StyledHeadingInner>Contentful Blog</StyledHeadingInner>
+				<StyledHeadingInner>Blog</StyledHeadingInner>
 			</StyledMainHeading>
 			<StyledSpacer>
 				<Nav />

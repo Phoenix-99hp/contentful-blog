@@ -11,7 +11,7 @@ module.exports = {
 		contentBase: __dirname + "/dist",
 		hot: true,
 		host: "localhost",
-		port: 8888,
+		port: 8000,
 	},
 	module: {
 		rules: [

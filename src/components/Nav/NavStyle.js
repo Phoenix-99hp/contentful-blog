@@ -5,6 +5,11 @@ export const StyledNavContainer = styled.nav`
 	align-items: center;
 	justify-content: center;
 	width: 100%;
+
+	@media screen and (max-width: 530px) {
+		flex: 1 1 100%;
+		margin-top: 20px;
+	}
 `;
 
 export const StyledNavList = styled.div`
@@ -12,17 +17,8 @@ export const StyledNavList = styled.div`
 	justify-content: center;
 	text-align: center;
 	width: 100%;
+
+	@media screen and (max-width: 1300px) {
+		display: none;
+	}
 `;
-
-// export const StyledNavItem = styled.li`
-// 	display: inline-flex;
-// 	padding: 10px;
-// 	font-size: 20px;
-// 	border-left: 1px solid black;
-// 	text-decoration: none;
-
-// 	&:nth-of-type(1) {
-// 		border-right: 1px solid black;
-// 		border-left: none;
-// 	}
-// `;

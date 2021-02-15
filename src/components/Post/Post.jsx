@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useCallback } from "react";
+import React, { useContext, useReducer } from "react";
 import {
 	StyledPostTitle,
 	StyledPostText,
@@ -23,13 +23,13 @@ const Post = ({ posts }) => {
 
 	const initialState = {
 		posts: posts,
-		// hasError: false,
 		carouselData: {
 			featuredPost: posts[0],
 			featuredIndex: 0,
 			formerIndex: null,
 			direction: null,
 		},
+		disableButtons: false,
 	};
 
 	const reducer = (state, action) => {
@@ -45,6 +45,24 @@ const Post = ({ posts }) => {
 					...state,
 					carouselData: action.payload,
 					// hasError: false,
+				};
+			case "CLEAR_CAROUSEL_DATA":
+				return {
+					...state,
+					carouselData: {
+						...state.carouselData,
+						direction: null,
+					},
+				};
+			case "DISABLE_BUTTONS":
+				return {
+					...state,
+					disableButtons: true,
+				};
+			case "ENABLE_BUTTONS":
+				return {
+					...state,
+					disableButtons: false,
 				};
 			default:
 				return state;
@@ -93,6 +111,18 @@ const Post = ({ posts }) => {
 		});
 	};
 
+	const handleAnimationEnd = () => {
+		dispatch({
+			type: "ENABLE_BUTTONS",
+		});
+	};
+
+	const handleAnimationStart = () => {
+		dispatch({
+			type: "DISABLE_BUTTONS",
+		});
+	};
+
 	return (
 		<>
 			<StyledRelativeContainer>
@@ -100,6 +130,8 @@ const Post = ({ posts }) => {
 					? posts.map((post, i) => {
 							return (
 								<StyledPostOuterContainer
+									onAnimationStart={handleAnimationStart}
+									onAnimationEnd={handleAnimationEnd}
 									showHide={
 										state.carouselData.featuredIndex === i
 											? "showFeatured"
@@ -118,14 +150,24 @@ const Post = ({ posts }) => {
 					: null}
 			</StyledRelativeContainer>
 			<StyledPostButtonsContainer>
-				<StyledNextButton onClick={handleNextClick}>{">"}</StyledNextButton>
-				<StyledPrevButton onClick={handlePrevClick}>{"<"}</StyledPrevButton>
+				<StyledNextButton
+					disabled={state.disableButtons}
+					onClick={handleNextClick}
+				>
+					{">"}
+				</StyledNextButton>
+				<StyledPrevButton
+					disabled={state.disableButtons}
+					onClick={handlePrevClick}
+				>
+					{"<"}
+				</StyledPrevButton>
 				<StyledContinueButton
 					onClick={() => {
 						handleContinueClick(state.carouselData.featuredPost.id);
 					}}
 				>
-					Continue Reading
+					Read Full
 				</StyledContinueButton>
 			</StyledPostButtonsContainer>
 		</>

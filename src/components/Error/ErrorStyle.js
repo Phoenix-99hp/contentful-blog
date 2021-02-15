@@ -3,21 +3,20 @@ import styled from "styled-components";
 export const StyledErrorContainer = styled.div`
 	height: 200px;
 	display: flex;
-	// align-self: center;
 	align-items: center;
 	justify-content: center;
 	min-height: 200px;
 	width: 100%;
 	max-width: 400px;
-	background-color: white;
+	// background-color: white;
 	opacity: 0.95;
 	border-radius: 3px;
 	border: 3px solid #12d0ee;
 `;
 
 export const StyledErrorMessage = styled.p`
-	color: red;
-	font-size: 20px;
+	color: #ea42dd;
+	font-size: 25px;
 `;
 
 export const MainArea = styled.main`

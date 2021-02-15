@@ -8,11 +8,13 @@
 		"dotenv": "^8.2.0",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
+		"react-responsive": "^8.2.0",
 		"react-router-dom": "^5.2.0",
 		"styled-components": "^5.2.1"
 	},
 	"scripts": {
-		"start": "nodemon server.js",
+		"start": "node server.js",
+		"dev": "webpack serve --mode development",
 		"build": "webpack --mode production"
 	},
 	"eslintConfig": {
