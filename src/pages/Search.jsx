@@ -8,10 +8,12 @@ import Loading from "./Loading.jsx";
 import SimilarPosts from "../components/SimilarPosts/SimilarPosts.jsx";
 import Spacer from "../components/Spacer/Spacer.jsx";
 import NoSearchMatch from "../components/NoSearchMatch/NoSearchMatch.jsx";
+import { useHistory } from "react-router-dom";
 
 const Search = () => {
 	const { search } = useContext(SearchContext);
 	const prepared = search.for.trim().toLowerCase();
+	const history = useHistory();
 
 	const initialState = {
 		exactMatch: null,
@@ -53,29 +55,33 @@ const Search = () => {
 			type: "FETCH_SEARCH_REQUEST",
 		});
 		console.log("INITIATING SEARCH", prepared);
-		fetch(`/api/search/${prepared}`, {
-			method: "GET",
-			mode: "same-origin",
-		})
-			.then((res) => {
-				console.log("RES", res);
-				return res.json();
+		if (prepared) {
+			fetch(`/api/search/${prepared}`, {
+				method: "GET",
+				mode: "same-origin",
 			})
-			.then((response) => {
-				console.log(response, "RESPONSE");
-				setTimeout(() => {
+				.then((res) => {
+					console.log("RES", res);
+					return res.json();
+				})
+				.then((response) => {
+					console.log(response, "RESPONSE");
+					setTimeout(() => {
+						dispatch({
+							type: "FETCH_SEARCH_SUCCESS",
+							payload: response,
+						});
+					}, 1000);
+				})
+				.catch((error) => {
+					console.log(error);
 					dispatch({
-						type: "FETCH_SEARCH_SUCCESS",
-						payload: response,
+						type: "FETCH_SEARCH_FAILURE",
 					});
-				}, 1000);
-			})
-			.catch((error) => {
-				console.log(error);
-				dispatch({
-					type: "FETCH_SEARCH_FAILURE",
 				});
-			});
+		} else {
+			history.push("/home");
+		}
 	}, []);
 
 	return (

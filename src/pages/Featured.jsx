@@ -5,9 +5,11 @@ import FeaturedPost from "../components/FeaturedPost/FeaturedPost.jsx";
 import Hero from "../components/Hero/Hero.jsx";
 import Error from "../components/Error/Error.jsx";
 import Loading from "./Loading.jsx";
+import { useHistory } from "react-router-dom";
 
 const Featured = () => {
 	const { featuredState } = useContext(FeaturedContext);
+	const history = useHistory();
 
 	const initialState = {
 		isFetching: false,
@@ -51,29 +53,33 @@ const Featured = () => {
 		dispatch({
 			type: "FETCH_POST_REQUEST",
 		});
-		fetch(`/api/featured/${featuredState.featuredID}`, {
-			method: "GET",
-			mode: "same-origin",
-		})
-			.then((res) => {
-				console.log("RES", res);
-				return res.json();
+		if (featuredState.featuredID) {
+			fetch(`/api/featured/${featuredState.featuredID}`, {
+				method: "GET",
+				mode: "same-origin",
 			})
-			.then((response) => {
-				console.log(response);
-				setTimeout(() => {
+				.then((res) => {
+					console.log("RES", res);
+					return res.json();
+				})
+				.then((response) => {
+					console.log(response);
+					setTimeout(() => {
+						dispatch({
+							type: "FETCH_POST_SUCCESS",
+							payload: response,
+						});
+					}, 1000);
+				})
+				.catch((error) => {
+					console.log(error);
 					dispatch({
-						type: "FETCH_POST_SUCCESS",
-						payload: response,
+						type: "FETCH_POST_FAILURE",
 					});
-				}, 1000);
-			})
-			.catch((error) => {
-				console.log(error);
-				dispatch({
-					type: "FETCH_POST_FAILURE",
 				});
-			});
+		} else {
+			history.push("/home");
+		}
 	}, []);
 
 	return (
