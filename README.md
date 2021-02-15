@@ -1,4 +1,4 @@
-Deployed:
+Deployed: https://calm-mountain-77192.herokuapp.com/
 
 This is a blog website that I made while learning to use the Contentful CMS with React.
 
