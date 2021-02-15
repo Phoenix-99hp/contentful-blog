@@ -54,7 +54,7 @@ const Search = () => {
 		dispatch({
 			type: "FETCH_SEARCH_REQUEST",
 		});
-		if (search) {
+		if (search.for) {
 			const prepared = search.for.trim().toLowerCase();
 			fetch(`/api/search/${prepared}`, {
 				method: "GET",
