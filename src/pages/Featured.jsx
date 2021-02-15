@@ -78,7 +78,7 @@ const Featured = () => {
 					});
 				});
 		} else {
-			history.push("/home");
+			history.push("/");
 		}
 	}, []);
 
