@@ -6,6 +6,7 @@
 		"contentful": "^8.1.7",
 		"cors": "^2.8.5",
 		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
 		"react-responsive": "^8.2.0",
