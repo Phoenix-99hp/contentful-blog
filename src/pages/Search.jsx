@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom";
 
 const Search = () => {
 	const { search } = useContext(SearchContext);
-	const prepared = search.for.trim().toLowerCase();
+	// const prepared = search.for.trim().toLowerCase();
 	const history = useHistory();
 
 	const initialState = {
@@ -54,8 +54,8 @@ const Search = () => {
 		dispatch({
 			type: "FETCH_SEARCH_REQUEST",
 		});
-		console.log("INITIATING SEARCH", prepared);
 		if (search) {
+			const prepared = search.for.trim().toLowerCase();
 			fetch(`/api/search/${prepared}`, {
 				method: "GET",
 				mode: "same-origin",
