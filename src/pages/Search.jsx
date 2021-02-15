@@ -55,7 +55,7 @@ const Search = () => {
 			type: "FETCH_SEARCH_REQUEST",
 		});
 		console.log("INITIATING SEARCH", prepared);
-		if (prepared) {
+		if (search) {
 			fetch(`/api/search/${prepared}`, {
 				method: "GET",
 				mode: "same-origin",
